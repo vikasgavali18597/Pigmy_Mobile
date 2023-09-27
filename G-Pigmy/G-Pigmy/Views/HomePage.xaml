@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="G_Pigmy.Views.HomePage"
+              xmlns:r="clr-namespace:Xamarin.Responsive;assembly=Xamarin.Responsive"
+             Title="Home">
+
+
+    <ContentPage.Resources>
+        <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"></Setter>
+        </Style>
+        <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
+                                <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+
+
+        <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="male_user_26.png" xct:CornerRadiusEffect.CornerRadius="50" Clicked="ToolbarItem_Clicked"/>
+        <!--Text="Add" Command="{Binding AddItemCommand}"-->
+    </ContentPage.ToolbarItems>
+    
+    
+    
+    <ContentPage.Content >
+        <ScrollView>
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="280"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid BackgroundColor="#455399" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                      HeightRequest="600" 
+                      xct:CornerRadiusEffect.CornerRadius="0,0,39,39"
+                      xct:ShadowEffect.Color="blue"                       
+                      xct:ShadowEffect.Radius="24"
+                      >
+                    <!--<xct:AvatarView Source="businessiconpng1934.png"  Margin="10,0,5,230" Text="User" FontFamily="glab" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                    </xct:AvatarView>-->
+
+                    <StackLayout Margin="0, -40, 0, 0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label TextColor="White" FontSize="40" HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span FontFamily="glab" Text="G-Pigmy" FontSize="40" FontAttributes="Bold"></Span>
+
+                                        <!--<Span FontFamily="glab" Text="Daily"  FontSize="40" FontAttributes="Bold"></Span>-->
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Daily Collection System" TextColor="White" HorizontalOptions="Center"/>
+                        <Label />
+                        <Label Margin="5,0,0,0"  Grid.Column="0" Text="Daniel B. Whitener" TextColor="White" FontSize="18"/>
+                        <Label Margin="5,0,0,0" Grid.Column="1" Text="95054" TextColor="White" FontSize="18" />
+                    </StackLayout>
+                </Grid>
+
+                <Grid Margin="20" Grid.Row="2"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <!--<RowDefinition Height="*" />-->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                   
+                    <Button BackgroundColor="#d8e1f0" Grid.Row="0" Grid.Column="0" ImageSource="cash94.png"  HeightRequest="0" IsEnabled="False" xct:CornerRadiusEffect.CornerRadius="20,10,10,10"/>
+                    <Label r:Row.Sm="576" Text="Daily Collection" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,5,0, 0"/>
+                    <Label r:Row.Sm="576" Text="55,000.00 /-" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,5"/>
+
+
+
+                    <!--ImageSource="icons8previous64.png"-->
+                    <Button BackgroundColor="#d8e1f0" ImageSource="commision_cash94.png"  Grid.Row="0" Grid.Column="1" TextColor="Black"  HeightRequest="0" IsEnabled="False" xct:CornerRadiusEffect.CornerRadius="10,20,10,10">
+
+                    </Button>
+
+                    <Label r:Row.Sm="576" Grid.Row="0" Grid.Column="1" Text="Commission" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,5,0, 40"/>
+                    <!--<Label Grid.Row="0" Grid.Column="1" Text="Paul Stirling" TextColor="Black" FontSize="20" FontFamily="glab" FontAttributes="Bold" VerticalOptions="End" HorizontalOptions="Center" Margin="0,10,0, 25"/>-->
+                    <Label r:Row.Sm="576" Grid.Row="0" Grid.Column="1" Text="1100 /-" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0, 5"/>
+                   
+                    <Button r:Row.Sm="576" BackgroundColor="#d8e1f0"  ImageSource="users94.png" Grid.Row="1" Grid.Column="0"  TextColor="White" IsEnabled="false" xct:CornerRadiusEffect.CornerRadius="10,10,20,10"/>
+                    <Label r:Row.Sm="576" Grid.Row="1" Grid.Column="0" Text="Visited Customers" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None"  VerticalOptions="Start" HorizontalOptions="Center" Margin="0,5,0, 10"  />
+                    <Label r:Row.Sm="576" Grid.Row="1" Grid.Column="0" Text="45 / 100" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="None" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0, 9"/>
+
+
+                    <!--<Grid  BackgroundColor="#d8e2fg" Grid.Row="1" Grid.Column="1" xct:CornerRadiusEffect.CornerRadius="10,10,10,20" >
+                        <Label Grid.Row="0" Text="Row1"/>
+                        <Label Grid.Row="1" Text="Row1"/>
+                    </Grid>-->
+                    <Button BackgroundColor="SkyBlue"  ImageSource="upload94.png" Grid.Row="1" Grid.Column="1" Clicked="FinalSubmit" TextColor="Black"  FontSize="18" FontAttributes="Bold" IsEnabled="True" xct:CornerRadiusEffect.CornerRadius="10,10,10,20">
+                    </Button>
+                    <Label r:Row.Sm="576" Grid.Row="1" Grid.Column="1" Text="Final Submit" TextColor="Black" FontSize="10" FontFamily="glab" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0, 10" />
+                </Grid>
+            </Grid>
+            
+            
+        </ScrollView>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="G_Pigmy.Views.ReportPage" 
+             Title="Reports"
+             >
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+
+            <!-- First row -->
+
+
+            <!--BackgroundColor="#d8e1f0"-->
+            <Grid Grid.Row="0" 
+                  BackgroundColor="#1F51EF" 
+                  Margin="5"
+                  HeightRequest="70">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Grid.Column="0" 
+                       Source="mini.png">
+                  
+                </Image>
+
+                <Label Grid.Column="1" 
+                       Text="Mini Statement"
+                       VerticalOptions="Center" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       Margin="30,0,0,0">
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="1" BackgroundColor="#1F51EF" Margin="5" HeightRequest="70">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ScrollReport_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="scrollReport.png">
+                    <!--<Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ScrollReport_Tapped"
+                           NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>-->
+                </Image>
+                <Label Grid.Column="1" Text="Scroll Report" VerticalOptions="Center" 
+               FontSize="20" FontAttributes="Bold" TextColor="White" Margin="30,0,0,0">
+                    <!--<Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ScrollReport_Tapped"
+                       NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>-->
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="2" BackgroundColor="#1F51EF" Margin="5" HeightRequest="70">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="BalanceReport_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="balanceReport.png">
+                    <!--<Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BalanceReport_Tapped"
+                           NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>-->
+                </Image>
+                <Label Grid.Column="1" Text="Balance Report" VerticalOptions="Center"
+               FontSize="20" FontAttributes="Bold" TextColor="White" Margin="30,0,0,0">
+                    <!--<Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BalanceReport_Tapped"
+                       NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>-->
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="3" BackgroundColor="#1F51EF" Margin="5" HeightRequest="65">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CollectionReport_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="cashColl.png">
+                    <!--<Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CollectionReport_Tapped"
+                           NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>-->
+                </Image>
+                <Label Grid.Column="1" Text="Collection Report" VerticalOptions="Center" 
+               FontSize="20" FontAttributes="Bold" TextColor="White" Margin="30,0,0,0">
+                    <!--<Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CollectionReport_Tapped"
+                       NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>-->
+                </Label>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

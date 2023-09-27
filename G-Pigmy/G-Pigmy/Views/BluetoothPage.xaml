@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:G_Pigmy.ViewModels" xmlns:custom="clr-namespace:G_Pigmy"
+             x:Class="G_Pigmy.Views.BluetoothPage">
+
+
+    <ContentPage.BindingContext>
+        <local:PrintViewBluetoothViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <!--<Button Text="BtChar" Clicked="Bt_Char"/>
+            <Button Text="BtDevice" Clicked="Bt_Device"/>
+            <Button Text="BtServe" Clicked="Bt_Serve"/>-->
+
+            <custom:CustomPicker Title="Select Device" 
+                    TitleColor="Black"
+                    TextColor="Black"
+                    ItemsSource="{Binding DeviceList}"
+                    ItemDisplayBinding="{Binding .}"
+                    SelectedItem="{Binding SelectedDevices}" 
+                    BorderColor="Black"/>
+
+           
+
+            <custom:CustomEntry CornerRadius="1"
+                 Text="{Binding PrintMessage}"
+                 ClearButtonVisibility="WhileEditing" 
+                 PlaceholderColor="black"
+                 BorderColor="Black"
+                 HorizontalTextAlignment="Center"
+                 FontSize="17" 
+                 HeightRequest="40"
+                 Placeholder="Message"
+                 TextColor="{StaticResource Primary}"
+                 FontAttributes="Bold"
+                 WidthRequest="100"
+                 Keyboard="Numeric"
+                 Margin="5,0,10,10"/>
+           
+            <Button Text="Print"
+                    Command="{Binding PrintCommand}" VerticalOptions="Center"/>
+
+            <Button Text="Turn on Bluetooth"
+        Command="{Binding TurnBluetoothOn}" VerticalOptions="Center"/>
+
+            <Label Text="Bluetooth is enabled" IsVisible="{Binding isBluetoothEnabled}"/>
+
+            <!--<Label Text="Bluetooth Toggle" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Switch x:Name="toggleSwitch" Toggled="OnToggled" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Button x:Name="pairButton" Text="Pair with Device" Clicked="OnPairClicked" IsEnabled="False" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:custom="clr-namespace:G_Pigmy" 
+             xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:local="clr-namespace:G_Pigmy.ViewModels"
+             x:Class="G_Pigmy.Views.MiniReportPage"
+             
+             Title="Mini Report">
+
+    <ContentPage.BindingContext>
+        <local:MiniReportViewModel/>
+    </ContentPage.BindingContext>
+   
+
+    <!--<ScrollView>-->
+
+        <StackLayout VerticalOptions="StartAndExpand" Padding="5">
+            <Label Text="Mini Report" HorizontalOptions="Center"  FontAttributes="Bold" FontSize="16"/>
+            <StackLayout Orientation="Horizontal" >
+                <custom:CustomEntry Placeholder="Account Number" PlaceholderColor="Black" WidthRequest="380" Margin="5" Text="{Binding AccountNumber}" ></custom:CustomEntry>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="From Date" FontSize="16" TextColor="Black"></Label>
+            <DatePicker WidthRequest="100" Date="{Binding StartDate}" TextColor="Black">
+                <DatePicker.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Image" Value="calendar.png" />
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+
+
+                <Label Text="To Date" FontSize="16" TextColor="black"></Label>
+            <DatePicker Date="{Binding EndDate}" TextColor="Black">
+                <DatePicker.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Image" Value="calendar.png" />
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+
+
+
+
+            <!--<Entry WidthRequest="100" Text="{Binding Filter.AccountNumber}" />
+            <DatePicker Date="{Binding Filter.StartDate}" />
+            <DatePicker Date="{Binding Filter.EndDate}" />-->
+            
+
+
+
+        </StackLayout>
+
+        <!--Command="{Binding ApplyFilterCommand}"-->
+        <Button Text="Apply Filter"  Clicked="filter" Command="{Binding ApplyFilterCommand}" CommandParameter="{Binding .}"/>
+        <!--<Button Text="Get"
+                    Command="{Binding ButtonClickedCommand, Source={x:Reference }}"
+                    ></Button>-->
+
+
+
+            <CollectionView Grid.Row="0" 
+                            
+                            Margin="10,10,10,10" 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="None"
+                            x:Name="Statements"
+                            ItemsSource="{Binding Statements}" IsVisible="{Binding show}" >
+
+            <!--<CollectionView.Header>
+                <Label Text="Account"  TextColor="Black" FontSize="16"/>
+            </CollectionView.Header>-->
+
+            <!--<CollectionView.Header>
+                <Grid>
+                    
+                    <Frame Grid.Column="0" HeightRequest="15">
+                        <Label Text="A/C No"/>
+                    </Frame>
+                    <Frame  Grid.Column="1">
+                        <Label Text="name"/>
+                    </Frame>
+                    <Frame  Grid.Column="2">
+                        <Label Text=""/>
+                    </Frame>
+                    <Frame  Grid.Column="3">
+                        <Label Text=""/>
+                    </Frame>
+                    <Frame  Grid.Column="4">
+                        <Label Text=""/>
+                    </Frame>
+                </Grid>
+            </CollectionView.Header>-->
+
+
+            <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <pv:PancakeView  BackgroundColor="White" 
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="FillAndExpand">
+                        <Grid VerticalOptions="StartAndExpand"  RowSpacing="0" 
+               HorizontalOptions="FillAndExpand">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                           
+
+                                <Label Grid.Column="0" Text="{Binding AccountNumber}" />
+                                <Label Grid.Column="1" Text="{Binding Name}" />
+                                <Label Grid.Column="2" Text="{Binding Deposite}"/>
+                                <Label Grid.Column="3" Text="{Binding Balance}"/>
+                                <Label Grid.Column="4" Text="{Binding TransactionDate, StringFormat='{0:dd/MM/yyyy}' }"/>
+
+                            </Grid>
+                        </pv:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    <!--</ScrollView>-->
+
+   
+
+
+    <!--<ContentPage.Content>
+        <StackLayout>
+         
+
+                        <Label Text="Mini Report" 
+                               Style="{DynamicResource TitleStyle}"
+                               Margin="0, 20"
+                               HorizontalTextAlignment="Center" />
+
+                        <Label Text="Start Date:" HorizontalOptions="Start" />
+
+                        <DatePicker x:Name="startDatePicker" 
+                                    Format="D" Margin="30, 0, 0, 30" 
+                                    DateSelected="OnDateSelected" />
+
+                        <Label Text="End Date:" HorizontalOptions="Center" VerticalOptions="Start" Margin="10,10,10,-10" />
+
+                        <DatePicker x:Name="endDatePicker" 
+                                    MinimumDate="{Binding Source={x:Reference startDatePicker},Path=Date}"
+                                    Format="D"
+                                    Margin="30, 0, 0, 30"
+                                    DateSelected="OnDateSelected" />
+
+                        <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 30">
+                            <Label Text="Include both days in total: " VerticalOptions="Center" />
+                            
+                            <Switch x:Name="includeSwitch" Toggled="OnSwitchToggled" />
+                        </StackLayout>
+
+            <Label x:Name="resultLabel" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            
+            
+        </StackLayout>
+    </ContentPage.Content>-->
+</ContentPage>

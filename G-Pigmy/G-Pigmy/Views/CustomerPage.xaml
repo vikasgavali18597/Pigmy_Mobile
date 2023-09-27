@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:extensions="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:custom="clr-namespace:G_Pigmy" 
+             xmlns:Model="clr-namespace:G_Pigmy.Models" 
+             xmlns:local="clr-namespace:G_Pigmy.ViewModels"
+             x:Class="G_Pigmy.Views.CustomerPage"
+             Title="{Binding Title}">
+
+
+    <ContentPage.BindingContext>
+        <local:CustomerViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <SearchBar WidthRequest="1000" 
+                       Placeholder="Search by Name or Account Number." 
+                       TextColor="White"
+                       BackgroundColor="#0077b6" 
+                       HorizontalOptions="FillAndExpand"
+                       TextChanged="SearchBar_TextChanged"
+                       Margin="0,0,1,10"
+                       HeightRequest="60"
+                       Keyboard="Default"/>
+
+           
+                <CollectionView Grid.Row="0"  
+                            Margin="10,60,10,10" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="None"
+                            x:Name="CustomersList"
+                            ItemsSource="{Binding Customers}">
+
+                    <!--<CollectionView.Header>
+                    <Label   TextColor="Black" FontSize="18"/>
+                </CollectionView.Header>-->
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <pv:PancakeView  BackgroundColor="White" 
+                                         VerticalOptions="StartAndExpand" 
+                                         HorizontalOptions="FillAndExpand">
+                                <Grid VerticalOptions="StartAndExpand" 
+                             HorizontalOptions="FillAndExpand">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <BoxView BackgroundColor="DarkOrange" 
+                                         WidthRequest="3" 
+                                         HorizontalOptions="Start"
+                                         VerticalOptions="FillAndExpand"/>
+                                    <extensions:Expander Grid.Column="1" IsExpanded="False">
+                                        <extensions:Expander.Header>
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="3.5*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <CheckBox Color="Green" Margin="0,0,0,20"  IsChecked="{Binding Status}" IsEnabled="False"/>
+                                                </StackLayout>
+
+                                                <BoxView Grid.Column="1" 
+                                                     BackgroundColor="#F2F4F8"
+                                                     WidthRequest="1" 
+                                                     HorizontalOptions="Start" 
+                                                     VerticalOptions="FillAndExpand"/>
+
+                                                <StackLayout Grid.Column="2"
+                                                         HorizontalOptions="Start"
+                                                         VerticalOptions="Center" 
+                                                         Margin="20"
+                                                         >
+                                                    <Label Text="{Binding Name}" 
+                                                         TextColor="Black" 
+                                                         FontSize="15"
+                                                         FontAttributes="Bold" />
+
+                                                    <Label Text="{Binding AccountNumber}"
+                                                         TextColor="#2F3246" 
+                                                         FontSize="12"
+                                                         Margin="0,-5,0,0"/>
+
+                                                </StackLayout>
+                                            </Grid>
+                                        </extensions:Expander.Header>
+                                        <Grid HorizontalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="3.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <BoxView Grid.Column="1" 
+                                                 BackgroundColor="#F2F4F8" 
+                                                 WidthRequest="1" 
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="FillAndExpand"/>
+
+                                            <StackLayout Grid.Column="2" 
+                                                     Spacing="10" 
+                                                     HeightRequest="200"
+                                                    
+                                                         >
+
+                                                <Label Text="Balance :" 
+                                                   TextColor="DarkTurquoise" 
+                                                   FontSize="16" Margin="20,0" 
+                                                   FontFamily="glab" 
+                                                   FontAttributes="Bold" />
+
+
+                                                <Label TextColor="#2F3246" 
+                                                   FontSize="12" 
+                                                   Margin="20,0">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <Span Text="AvailableBalance" FontAttributes="Bold"/>
+                                                                <Span Text="    -  "/>
+                                                                <Span Text="{Binding AvailableBalance}" FontAttributes="Bold"/>
+                                                                <Span Text=" .00/-  "/>
+                                                                <Span Text="                "/>
+
+                                                                <Span Text="CurrentBalance" FontAttributes="Bold" />
+                                                                <Span Text="       -   "/>
+                                                                <Span Text="{Binding CurrentBalance}" FontAttributes="Bold"/>
+                                                                <Span Text=" .00/-  "/>
+                                                            </FormattedString.Spans>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <custom:CustomEntry CornerRadius="1"
+                                                                    x:Name="amount"
+                                                                Text="{Binding Amount}"
+                                                                ClearButtonVisibility="WhileEditing" 
+                                                                BorderColor="Black"
+                                                                HorizontalTextAlignment="Center"
+                                                                FontSize="17" 
+                                                                HeightRequest="40"
+                                                                Placeholder="Amount"
+                                                                PlaceholderColor="#e877"
+                                                                BackgroundColor="#f7f7f7"
+                                                                TextColor="{StaticResource Primary}"
+                                                                FontAttributes="none"
+                                                                WidthRequest="100"
+                                                                Keyboard="Numeric"
+                                                                Margin="5,0,10,-10"
+                                                                extensions:MultiValidationBehavior.Error="{}"/>
+
+                                                <Grid Padding="10,10,10,0">
+                                                    <Button Text="Reciept" 
+                                                        FontAttributes="Bold"
+                                                        FontFamily="glab" 
+                                                        HorizontalOptions="End" 
+                                                        WidthRequest="110" 
+                                                       
+                                                        Command="{Binding BindingContext.ButtonClickedCommand, Source={x:Reference CustomersList}}" 
+                                                        CommandParameter="{Binding .}"
+                                                        extensions:MultiValidationBehavior.Error="{Binding Amount}"
+                                                            />
+
+                                                    <Button Text="Clear" 
+                                                        FontAttributes="Bold"
+                                                        FontFamily="glab"
+                                                        HorizontalOptions="Start" 
+                                                        WidthRequest="110" 
+                                                        BackgroundColor="Orange" 
+                                                        Command="{Binding ClearEntryCommand}"
+                                                            />
+                                                </Grid>
+                                            </StackLayout>
+                                        </Grid>
+                                    </extensions:Expander>
+                                </Grid>
+                            </pv:PancakeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+    
+    </AbsoluteLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
